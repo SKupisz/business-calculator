@@ -7,7 +7,7 @@ export const LandingPageMainHeader = styled.header`
     font-size: 2.1em;
     letter-spacing: 0.03em;
     font-family: ${(props) => props.theme.fontFamily};
-    color: rgba(0,172,183,.8);
+    color: ${(props) => props.theme.color};
     text-shadow: 3px 3px 3px rgba(0,0,0,.15);
     position: relative;
     top: 14vh;

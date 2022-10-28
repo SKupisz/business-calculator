@@ -17,4 +17,5 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Styles = {
     fontFamily: "Ubuntu, sans-serif",
+    color: "rgba(0,172,183,.8)"
 };
