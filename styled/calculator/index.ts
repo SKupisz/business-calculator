@@ -39,7 +39,20 @@ export const CalculatorContainer = styled.section`
     top: 1vh;
     background: rgba(200,200,200,.1);
     text-align: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+
+    &::-webkit-scrollbar{
+        background: transparent;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        width: 4px;
+        background: rgba(0,172,183,.4);
+    }
 
     @media screen and (min-width: 425px){
         width: calc(80% - 20px);
@@ -61,6 +74,17 @@ export const CalculatorContainer = styled.section`
 export const CalculatorCardWrapper = styled.div`
     width: calc(100% - 10px);
     padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+`;
+
+export const CalculatorCardContent = styled.div`
+    width: calc(100% - 10px);
+    height: calc(40vh - 10px);
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
 `;
 
 export const CalculatorCardHeader = styled.h3`
@@ -72,6 +96,7 @@ export const CalculatorCardHeader = styled.h3`
     position: relative;
     top: 1vh;
     margin-bottom: 4vh;
+    white-space: normal;
 
     @media screen and (min-width: 425px){
         font-size: 1.4em;
@@ -94,6 +119,7 @@ export const CalculatorCardInput = styled.input`
     letter-spacing: 0.03em;
     font-family: ${(props) => props.theme.fontFamily};
     color: ${(props) => props.theme.color};
+    white-space: normal;
     background: rgba(3,172,179,.2);
     border: none;
     border-radius: 10px;
@@ -107,6 +133,12 @@ export const CalculatorCardInput = styled.input`
     &:hover{
         filter: brightness(70%);
     }
+`;
+
+export const CalculatorServiceWrapper = styled.div`
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2vh;
 `;
 
 export const CalculatorNextPageIconWrapper = styled.div`
