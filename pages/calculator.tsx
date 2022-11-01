@@ -10,7 +10,7 @@ const Calculator: NextPage = () => {
 
     const [phase, setPhase] = useState<number>(0); // 0 - basic business data, 1 - services, 2 - summary and submitting
     const [isNextPhaseAvailable, toggleIsNextPhaseAvailable] = useState<boolean>(false);
-    const [areResultsAvailable, toggleAreResultsAvailable] = useState<boolean>(false);
+    const [areResultsAvailable, toggleAreResultsAvailable] = useState<boolean>(true);
 
     const [annualCost, setAnnualCost] = useState<number|undefined>();
     const [monthlySalary, setMonthlySalary] = useState<number|undefined>();
