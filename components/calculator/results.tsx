@@ -1,9 +1,10 @@
 import React from "react";
 
 import { ResultsContainer, ResultsCategory, ResultsCategoryHeader, ResultsCategorySubsection,
-    ResultsCategorySubSectionHeader, } from "styled/calculator/results";
+    ResultsCategorySubSectionHeader, ResultsUserBusinessCost, ResultsUserBusinessCostHeader} from "styled/calculator/results";
 
 import ResultsBusinessService from "./resultsBusinessService";
+import ResultsBusinessCost from "./resultsBusinessCost";
 
 const CalculatorResults:React.FC = () => {
     return <ResultsContainer className="block-center">
@@ -23,6 +24,8 @@ const CalculatorResults:React.FC = () => {
                 <ResultsCategorySubSectionHeader className="block-center">
                     Business costs
                 </ResultsCategorySubSectionHeader>
+                <ResultsBusinessCost costName="BEP" cost={200000} />
+                <ResultsBusinessCost costName="Annual Revenue" cost={120000} />
             </ResultsCategorySubsection>
         </ResultsCategory>
         <ResultsCategory className="block-center">

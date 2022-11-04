@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { motion } from "framer-motion";
 
 import { ResultsCategoryBusinessServiceOpening, ResultsCategoryBusinessServiceWrapper, ResultsCategoryBusinessService, 
-    ResultsCategoryBusinessServiceHeader, ResultsCategoryBusinessServiceSubHeader } from "styled/calculator/results";
+    ResultsCategoryBusinessServiceHeader, ResultsCategoryBusinessServiceSubHeader } from "styled/calculator/results/servicesResults";
 
 interface ResultsBusinessServiceInterface {
     serviceNumber: number,
@@ -44,7 +44,6 @@ const ResultsBusinessService:React.FC<ResultsBusinessServiceInterface> = ({
                     {currentPrice}
                 </ResultsCategoryBusinessServiceSubHeader>
             </ResultsCategoryBusinessService>
-
         </motion.section>
     </ResultsCategoryBusinessServiceWrapper>
 }
