@@ -11,15 +11,15 @@ const CalculatorResults:React.FC = () => {
             <ResultsCategoryHeader className="block-center">
                 You and your business
             </ResultsCategoryHeader>
-            <ResultsCategorySubsection width={70}>
+            <ResultsCategorySubsection>
                 <ResultsCategorySubSectionHeader className="block-center">
                     Business services
                 </ResultsCategorySubSectionHeader>
-                <ResultsBusinessService clientsNumber={140} currentPrice={680} />
-                <ResultsBusinessService clientsNumber={140} currentPrice={680} />
-                <ResultsBusinessService clientsNumber={140} currentPrice={680} />
+                <ResultsBusinessService clientsNumber={140} currentPrice={680} serviceNumber={1} />
+                <ResultsBusinessService clientsNumber={140} currentPrice={680} serviceNumber={2} />
+                <ResultsBusinessService clientsNumber={140} currentPrice={680} serviceNumber={3} />
             </ResultsCategorySubsection>
-            <ResultsCategorySubsection width={30}>
+            <ResultsCategorySubsection>
                 <ResultsCategorySubSectionHeader className="block-center">
                     Business costs
                 </ResultsCategorySubSectionHeader>
