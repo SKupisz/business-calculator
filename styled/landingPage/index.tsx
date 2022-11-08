@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface LandingPageButtonInterface {
+    topPos?: number
+}
+
 export const LandingPageMainHeader = styled.header`
     width: calc(100% - 20px);
     padding: 10px;
@@ -66,7 +70,7 @@ export const LandingPageSubHeader = styled.header`
     }
 `;
 
-export const LandingPageButton = styled.button`
+export const LandingPageButton = styled.button<LandingPageButtonInterface>`
     width: fit-content;
     padding: 20px 40px;
     box-shadow: 3px 3px 4px rgba(0,0,0,.1);
@@ -81,7 +85,7 @@ export const LandingPageButton = styled.button`
     font-size: 1.1em;
     transition: all 0.4s;
     position: relative;
-    top: 25vh;
+    top: ${(props) => props.topPos !== undefined ? props.topPos : "25"}vh;
 
     &:hover{
         filter: brightness(70%);
@@ -96,7 +100,7 @@ export const LandingPageButton = styled.button`
     }
 
     @media screen and (min-width: 768px){
-        top: 30vh;
+        top: ${(props) => props.topPos !== undefined ? props.topPos : "30"}vh;
     }
 
     @media screen and (min-width: 1024px){

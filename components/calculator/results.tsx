@@ -1,12 +1,20 @@
 import React from "react";
 
 import { ResultsContainer, ResultsCategory, ResultsCategoryHeader, ResultsCategorySubsection,
-    ResultsCategorySubSectionHeader, ResultsUserBusinessCost, ResultsUserBusinessCostHeader} from "styled/calculator/results";
+    ResultsCategorySubSectionHeader, ResultsUserBusinessCost, ResultsUserBusinessCostHeader, ResultsBreakBlock} from "styled/calculator/results";
+
+import { LandingPageButton } from "styled/landingPage";
 
 import ResultsBusinessService from "./resultsBusinessService";
 import ResultsBusinessCost from "./resultsBusinessCost";
 
-const CalculatorResults:React.FC = () => {
+interface CalculatorResultsInterface {
+    goingBackCallback: () => void,
+}
+
+const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
+    goingBackCallback
+}:CalculatorResultsInterface) => {
     return <ResultsContainer className="block-center">
         <ResultsCategory className="block-center">
             <ResultsCategoryHeader className="block-center">
@@ -32,7 +40,27 @@ const CalculatorResults:React.FC = () => {
             <ResultsCategoryHeader className="block-center">
                 Business modifications
             </ResultsCategoryHeader>
+            <ResultsCategorySubsection className="block-center">
+                <ResultsCategorySubSectionHeader className="block-center">
+                    By customers
+                </ResultsCategorySubSectionHeader>
+                <ResultsBusinessService clientsNumber={240} currentPrice={680} serviceNumber={1} />
+                <ResultsBusinessService clientsNumber={190} currentPrice={680} serviceNumber={2} />
+                <ResultsBusinessService clientsNumber={210} currentPrice={680} serviceNumber={3} />
+            </ResultsCategorySubsection>
+            <ResultsCategorySubsection className="block-center">
+                <ResultsCategorySubSectionHeader className="block-center">
+                    By price
+                </ResultsCategorySubSectionHeader>
+                <ResultsBusinessService clientsNumber={240} currentPrice={680} serviceNumber={1} />
+                <ResultsBusinessService clientsNumber={190} currentPrice={680} serviceNumber={2} />
+                <ResultsBusinessService clientsNumber={210} currentPrice={680} serviceNumber={3} />
+            </ResultsCategorySubsection>
         </ResultsCategory>
+        <LandingPageButton className="block-center" onClick={goingBackCallback} type="button" topPos={6}>
+            Calculate again
+        </LandingPageButton>
+        <ResultsBreakBlock className="block-center" />
     </ResultsContainer>;
 }
 

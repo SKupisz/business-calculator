@@ -170,3 +170,9 @@ export const ResultsUserBusinessCostHeader = styled.header`
         font-size: 1.5em;
     }
 `;
+
+export const ResultsBreakBlock = styled.div`
+    height: 10vh;
+    position: relative;
+    top: 6vh;
+`;

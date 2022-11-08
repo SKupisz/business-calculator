@@ -10,7 +10,7 @@ const Calculator: NextPage = () => {
 
     const [phase, setPhase] = useState<number>(0); // 0 - basic business data, 1 - services, 2 - summary and submitting
     const [isNextPhaseAvailable, toggleIsNextPhaseAvailable] = useState<boolean>(false);
-    const [areResultsAvailable, toggleAreResultsAvailable] = useState<boolean>(true);
+    const [areResultsAvailable, toggleAreResultsAvailable] = useState<boolean>(false);
 
     const [annualCost, setAnnualCost] = useState<number|undefined>();
     const [monthlySalary, setMonthlySalary] = useState<number|undefined>();
@@ -33,7 +33,7 @@ const Calculator: NextPage = () => {
         setServices(operand); 
     }
 
-    const addNewService = () => {
+    const addNewService = ():void => {
         if(services.length < 3){
             const operand = [...services];
             operand.push({
@@ -42,6 +42,15 @@ const Calculator: NextPage = () => {
             });
             setServices(operand);
         }
+    }
+
+    const resetTheCalculator = ():void => {
+        setPhase(0);
+        toggleAreResultsAvailable(false);
+        toggleIsNextPhaseAvailable(false);
+        setAnnualCost(undefined);
+        setMonthlySalary(undefined);
+        setServices([]);
     }
 
     useEffect(() => {
@@ -69,7 +78,7 @@ const Calculator: NextPage = () => {
             services={services}
             addNewService={addNewService}
             updateService={updateService}
-            />: <CalculatorResults />
+            />: <CalculatorResults goingBackCallback={() => resetTheCalculator()} />
         }
     </>
 };
