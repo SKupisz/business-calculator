@@ -4,14 +4,19 @@ export const ContactHeader = styled.header`
     width: calc(100% - 20px);
     padding: 10px;
     text-align: center;
-    font-size: 3.6em;
+    font-size: 3.1em;
     color: ${(props) => props.theme.color};
     font-family: ${(props) => props.theme.fontFamily};
     font-weight: 700;
     text-shadow: 3px 3px 4px rgba(0,0,0,.2);
     position: relative;
     top: 4vh;
-    margin-bottom: 10vh;
+    margin-bottom: 3vh;
+
+    @media screen and (min-width: 768px){
+        font-size: 3.6em;
+        margin-bottom: 10vh;
+    }
 
     @media screen and (min-width: 1024px){
         width: calc(80% - 20px);
@@ -27,8 +32,12 @@ export const ContactContainer = styled.section`
     top: 10vh;
     color: ${(props) => props.theme.color};
     font-family: ${(props) => props.theme.fontFamily};
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-shadow: 3px 3px 4px rgba(0,0,0,.15);
+
+    @media screen and (min-width: 425px){
+        font-size: 1.5em;
+    }
 
     @media screen and (min-width: 768px){
         width: calc(80% - 20px);
