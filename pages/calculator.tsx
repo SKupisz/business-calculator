@@ -20,8 +20,8 @@ const Calculator: NextPage = () => {
     const [services, setServices] = useState<serviceType[]>([]);
     const [BEP, setBEP] = useState<number>(0);
     const [clientsNumber, setClientsNumber] = useState<number>(0);
-    const [newPricesServices, setNewPricesServices] = useState<serviceType[]>();
-    const [newClientsServices, setNewClientsServices] = useState<serviceType[]>();
+    const [newPricesServices, setNewPricesServices] = useState<serviceType[]>([]);
+    const [newClientsServices, setNewClientsServices] = useState<serviceType[]>([]);
 
     const validateNumber = (numberToValidate: string, assigningCallback: (newState: number | undefined) => void):void => {
         const operand = parseInt(numberToValidate);
@@ -69,7 +69,7 @@ const Calculator: NextPage = () => {
     }, [phase, annualCost, monthlySalary, services]);
 
     useEffect(() => {
-        if(phase === 2 && !isNextPhaseAvailable){
+        if(phase === 2 && !isNextPhaseAvailable && annualCost !== undefined && monthlySalary !== undefined){
             calculateTheResults(annualCost, monthlySalary, services, setBEP, setClientsNumber, setNewPricesServices, setNewClientsServices,
                 toggleIsLoading, toggleAreResultsAvailable);
         }
@@ -95,7 +95,7 @@ const Calculator: NextPage = () => {
             />: <CalculatorResults 
             goingBackCallback={() => resetTheCalculator()} 
             businesCost={annualCost}
-            montlhySalary={monthlySalary}
+            monthlySalary={monthlySalary}
             BEP={BEP}
             previousServices={services}
             newServicesByPrice={newPricesServices}

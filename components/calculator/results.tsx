@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ResultsContainer, ResultsCategory, ResultsCategoryHeader, ResultsCategorySubsection,
-    ResultsCategorySubSectionHeader, ResultsUserBusinessCost, ResultsUserBusinessCostHeader, ResultsBreakBlock} from "styled/calculator/results";
+    ResultsCategorySubSectionHeader, ResultsBreakBlock} from "styled/calculator/results";
 
 import { LandingPageButton } from "styled/landingPage";
 
@@ -11,8 +11,8 @@ import { serviceType } from "./calculator";
 
 interface CalculatorResultsInterface {
     goingBackCallback: () => void,
-    businesCost: number,
-    montlhySalary: number,
+    businesCost: number|undefined,
+    monthlySalary: number|undefined,
     BEP: number,
     previousServices: serviceType[],
     newServicesByPrice: serviceType[],
@@ -22,7 +22,7 @@ interface CalculatorResultsInterface {
 const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
     goingBackCallback,
     businesCost,
-    montlhySalary,
+    monthlySalary,
     BEP,
     previousServices,
     newServicesByPrice,
@@ -38,7 +38,8 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
                     Business services
                 </ResultsCategorySubSectionHeader>
                 {
-                    previousServices === undefined ? <></> : previousServices.map((elem:serviceType, ind: number) => <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/>)
+                    previousServices === undefined ? <></> : previousServices.map((elem:serviceType, ind: number) => elem.clientsNumber !== undefined && elem.currentPrice !== undefined ? 
+                    <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/> : null)
                 }
             </ResultsCategorySubsection>
             <ResultsCategorySubsection>
@@ -46,8 +47,8 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
                     Business costs
                 </ResultsCategorySubSectionHeader>
                 <ResultsBusinessCost costName="BEP" cost={BEP} />
-                <ResultsBusinessCost costName="Mothly salary" cost={montlhySalary} />
-                <ResultsBusinessCost costName="Annual Revenue" cost={businesCost} />
+                {monthlySalary !== undefined ? <ResultsBusinessCost costName="Mothly salary" cost={monthlySalary} /> : null}
+                {businesCost !== undefined ? <ResultsBusinessCost costName="Annual Revenue" cost={businesCost} /> : null}
             </ResultsCategorySubsection>
         </ResultsCategory>
         <ResultsCategory className="block-center">
@@ -59,7 +60,8 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
                     By customers
                 </ResultsCategorySubSectionHeader>
                 {
-                    newServicesByClients === undefined ? <></> : newServicesByClients.map((elem:serviceType, ind: number) => <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/>)
+                    newServicesByClients === undefined ? <></> : newServicesByClients.map((elem:serviceType, ind: number) => elem.clientsNumber !== undefined && elem.currentPrice !== undefined ? 
+                    <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/> : null)
                 }
             </ResultsCategorySubsection>
             <ResultsCategorySubsection className="block-center">
@@ -67,7 +69,8 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
                     By price
                 </ResultsCategorySubSectionHeader>
                 {
-                    newServicesByPrice === undefined ? <></> : newServicesByPrice.map((elem:serviceType, ind: number) => <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/>)
+                    newServicesByPrice === undefined ? <></> : newServicesByPrice.map((elem:serviceType, ind: number) => elem.clientsNumber !== undefined && elem.currentPrice !== undefined ?
+                    <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/> : null)
                 }
             </ResultsCategorySubsection>
         </ResultsCategory>
