@@ -6,15 +6,22 @@ import { CalculatorHeader } from "styled/calculator";
 import CalculatorComponent, { serviceType } from "components/calculator/calculator";
 import CalculatorResults from "components/calculator/results";
 
+import calculateTheResults from "connectionFunctions/calculateTheResults";
+
 const Calculator: NextPage = () => {
 
     const [phase, setPhase] = useState<number>(0); // 0 - basic business data, 1 - services, 2 - summary and submitting
     const [isNextPhaseAvailable, toggleIsNextPhaseAvailable] = useState<boolean>(false);
     const [areResultsAvailable, toggleAreResultsAvailable] = useState<boolean>(false);
+    const [isLoading, toggleIsLoading] = useState<boolean>(false);
 
     const [annualCost, setAnnualCost] = useState<number|undefined>();
     const [monthlySalary, setMonthlySalary] = useState<number|undefined>();
     const [services, setServices] = useState<serviceType[]>([]);
+    const [BEP, setBEP] = useState<number>(0);
+    const [clientsNumber, setClientsNumber] = useState<number>(0);
+    const [newPricesServices, setNewPricesServices] = useState<serviceType[]>();
+    const [newClientsServices, setNewClientsServices] = useState<serviceType[]>();
 
     const validateNumber = (numberToValidate: string, assigningCallback: (newState: number | undefined) => void):void => {
         const operand = parseInt(numberToValidate);
@@ -60,6 +67,13 @@ const Calculator: NextPage = () => {
             (elem.currentPrice !== undefined && elem.currentPrice === 0)).length === 0
         ));
     }, [phase, annualCost, monthlySalary, services]);
+
+    useEffect(() => {
+        if(phase === 2 && !isNextPhaseAvailable){
+            calculateTheResults(annualCost, monthlySalary, services, setBEP, setClientsNumber, setNewPricesServices, setNewClientsServices,
+                toggleIsLoading, toggleAreResultsAvailable);
+        }
+    }, [phase,isNextPhaseAvailable]);
 
     return <>
         <CalculatorHeader className="block-center">

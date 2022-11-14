@@ -74,7 +74,7 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
         display: "inline-block",
         verticalAlign: "top"
     }} animate={{
-        marginLeft: phase < 1 ? ["100%", "100%"] : phase === 1 ? ["100%", "0%"] : ["0%", "-100%"]
+        marginLeft: phase < 1 ? ["100%", "100%"] : ["100%", "0%"]
     }} transition={{
         duration: 0.4,
         repeat: 0
@@ -100,7 +100,7 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
                 
                 {
                     isNextPhaseAvailable ? <CalculatorNextPageIconWrapper className="block-center">
-                        <NextWeekIcon style={{ color: "inherit", fontSize: "inherit" }} onClick={() => setPhase(1)} />
+                        <NextWeekIcon style={{ color: "inherit", fontSize: "inherit" }} onClick={() => setPhase(phase+1)} />
                     </CalculatorNextPageIconWrapper> : null
                 }
 
