@@ -92,7 +92,15 @@ const Calculator: NextPage = () => {
             services={services}
             addNewService={addNewService}
             updateService={updateService}
-            />: <CalculatorResults goingBackCallback={() => resetTheCalculator()} />
+            />: <CalculatorResults 
+            goingBackCallback={() => resetTheCalculator()} 
+            businesCost={annualCost}
+            montlhySalary={monthlySalary}
+            BEP={BEP}
+            previousServices={services}
+            newServicesByPrice={newPricesServices}
+            newServicesByClients={newClientsServices}
+            />
         }
     </>
 };

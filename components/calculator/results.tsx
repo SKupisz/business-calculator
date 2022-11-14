@@ -7,13 +7,26 @@ import { LandingPageButton } from "styled/landingPage";
 
 import ResultsBusinessService from "./resultsBusinessService";
 import ResultsBusinessCost from "./resultsBusinessCost";
+import { serviceType } from "./calculator";
 
 interface CalculatorResultsInterface {
     goingBackCallback: () => void,
+    businesCost: number,
+    montlhySalary: number,
+    BEP: number,
+    previousServices: serviceType[],
+    newServicesByPrice: serviceType[],
+    newServicesByClients: serviceType[],
 }
 
 const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
-    goingBackCallback
+    goingBackCallback,
+    businesCost,
+    montlhySalary,
+    BEP,
+    previousServices,
+    newServicesByPrice,
+    newServicesByClients,
 }:CalculatorResultsInterface) => {
     return <ResultsContainer className="block-center">
         <ResultsCategory className="block-center">
@@ -24,16 +37,17 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
                 <ResultsCategorySubSectionHeader className="block-center">
                     Business services
                 </ResultsCategorySubSectionHeader>
-                <ResultsBusinessService clientsNumber={140} currentPrice={680} serviceNumber={1} />
-                <ResultsBusinessService clientsNumber={140} currentPrice={680} serviceNumber={2} />
-                <ResultsBusinessService clientsNumber={140} currentPrice={680} serviceNumber={3} />
+                {
+                    previousServices === undefined ? <></> : previousServices.map((elem:serviceType, ind: number) => <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/>)
+                }
             </ResultsCategorySubsection>
             <ResultsCategorySubsection>
                 <ResultsCategorySubSectionHeader className="block-center">
                     Business costs
                 </ResultsCategorySubSectionHeader>
-                <ResultsBusinessCost costName="BEP" cost={200000} />
-                <ResultsBusinessCost costName="Annual Revenue" cost={120000} />
+                <ResultsBusinessCost costName="BEP" cost={BEP} />
+                <ResultsBusinessCost costName="Mothly salary" cost={montlhySalary} />
+                <ResultsBusinessCost costName="Annual Revenue" cost={businesCost} />
             </ResultsCategorySubsection>
         </ResultsCategory>
         <ResultsCategory className="block-center">
@@ -44,17 +58,17 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
                 <ResultsCategorySubSectionHeader className="block-center">
                     By customers
                 </ResultsCategorySubSectionHeader>
-                <ResultsBusinessService clientsNumber={240} currentPrice={680} serviceNumber={1} />
-                <ResultsBusinessService clientsNumber={190} currentPrice={680} serviceNumber={2} />
-                <ResultsBusinessService clientsNumber={210} currentPrice={680} serviceNumber={3} />
+                {
+                    newServicesByClients === undefined ? <></> : newServicesByClients.map((elem:serviceType, ind: number) => <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/>)
+                }
             </ResultsCategorySubsection>
             <ResultsCategorySubsection className="block-center">
                 <ResultsCategorySubSectionHeader className="block-center">
                     By price
                 </ResultsCategorySubSectionHeader>
-                <ResultsBusinessService clientsNumber={240} currentPrice={680} serviceNumber={1} />
-                <ResultsBusinessService clientsNumber={190} currentPrice={680} serviceNumber={2} />
-                <ResultsBusinessService clientsNumber={210} currentPrice={680} serviceNumber={3} />
+                {
+                    newServicesByPrice === undefined ? <></> : newServicesByPrice.map((elem:serviceType, ind: number) => <ResultsBusinessService clientsNumber={elem.clientsNumber} currentPrice={elem.currentPrice} serviceNumber={ind+1}/>)
+                }
             </ResultsCategorySubsection>
         </ResultsCategory>
         <LandingPageButton className="block-center" onClick={goingBackCallback} type="button" topPos={6}>

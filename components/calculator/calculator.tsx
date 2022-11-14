@@ -8,8 +8,8 @@ import { CalculatorContainer, CalculatorServiceWrapper, CalculatorCardWrapper, C
 
 
 export type serviceType = {
-        currentPrice: number|undefined;
-      clientsNumber: number|undefined;
+    currentPrice: number|undefined;
+    clientsNumber: number|undefined;
 };
     
 

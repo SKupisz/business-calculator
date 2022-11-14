@@ -25,6 +25,8 @@ const calculateTheResults = async(
     .then((res) => {
         setBEP(res.data.totalBEP);
         setTotalNumbersOfClients(res.data.totalClients);
+        setNewPrices(res.data.newPrices);
+        setNewClients(res.data.newNumberOfClients);
         toggleIsLoading(false);
         toggleAreResultsAvailable(true);
     })
