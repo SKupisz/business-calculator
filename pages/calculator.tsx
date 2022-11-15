@@ -5,6 +5,7 @@ import { CalculatorHeader } from "styled/calculator";
 
 import CalculatorComponent, { serviceType } from "components/calculator/calculator";
 import CalculatorResults from "components/calculator/results";
+import ErrorComponent from "components/calculator/error";
 
 import calculateTheResults from "connectionFunctions/calculateTheResults";
 
@@ -14,6 +15,7 @@ const Calculator: NextPage = () => {
     const [isNextPhaseAvailable, toggleIsNextPhaseAvailable] = useState<boolean>(false);
     const [areResultsAvailable, toggleAreResultsAvailable] = useState<boolean>(false);
     const [isLoading, toggleIsLoading] = useState<boolean>(false);
+    const [isError, toggleIsError] = useState<boolean>(false);
 
     const [annualCost, setAnnualCost] = useState<number|undefined>();
     const [monthlySalary, setMonthlySalary] = useState<number|undefined>();
@@ -58,6 +60,7 @@ const Calculator: NextPage = () => {
         setAnnualCost(undefined);
         setMonthlySalary(undefined);
         setServices([]);
+        toggleIsError(false);
     }
 
     useEffect(() => {
@@ -71,7 +74,7 @@ const Calculator: NextPage = () => {
     useEffect(() => {
         if(phase === 2 && !isNextPhaseAvailable && annualCost !== undefined && monthlySalary !== undefined){
             calculateTheResults(annualCost, monthlySalary, services, setBEP, setClientsNumber, setNewPricesServices, setNewClientsServices,
-                toggleIsLoading, toggleAreResultsAvailable);
+                toggleIsLoading, toggleAreResultsAvailable, toggleIsError);
         }
     }, [phase,isNextPhaseAvailable]);
 
@@ -80,7 +83,9 @@ const Calculator: NextPage = () => {
             {!areResultsAvailable ? `Let's calculate!` : "Your results"}
         </CalculatorHeader>
         {
-            !areResultsAvailable ? <CalculatorComponent 
+            isError ? <ErrorComponent errorTitle="Oops!..." resetTheCalculator={resetTheCalculator}>
+                Something went wrong. Try to refresh the app or open it later
+            </ErrorComponent> : !areResultsAvailable ? <CalculatorComponent 
             phase={phase}
             annualCost={annualCost}
             setAnnualCost={setAnnualCost}
@@ -97,6 +102,7 @@ const Calculator: NextPage = () => {
             businesCost={annualCost}
             monthlySalary={monthlySalary}
             BEP={BEP}
+            totalClientsNumber={clientsNumber}
             previousServices={services}
             newServicesByPrice={newPricesServices}
             newServicesByClients={newClientsServices}

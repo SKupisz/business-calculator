@@ -11,8 +11,10 @@ const calculateTheResults = async(
     setNewClients: (newState: serviceType[]) => void,
     toggleIsLoading: (newState: boolean) => void,
     toggleAreResultsAvailable: (newState: boolean) => void,
+    toggleIsError: (newState: boolean) => void,
 ) => {
     toggleIsLoading(true);
+    toggleIsError(false);
     await axios.post(`${process.env.NEXT_PUBLIC_CONNECTION_TO_SERVER}/services`, {
         salary: monthlySalary,
         businessCost: annualCost,
@@ -30,7 +32,9 @@ const calculateTheResults = async(
         toggleIsLoading(false);
         toggleAreResultsAvailable(true);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        toggleIsError(true);
+    });
 };
 
 export default calculateTheResults;

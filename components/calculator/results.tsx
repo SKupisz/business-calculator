@@ -14,6 +14,7 @@ interface CalculatorResultsInterface {
     businesCost: number|undefined,
     monthlySalary: number|undefined,
     BEP: number,
+    totalClientsNumber: number,
     previousServices: serviceType[],
     newServicesByPrice: serviceType[],
     newServicesByClients: serviceType[],
@@ -24,6 +25,7 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
     businesCost,
     monthlySalary,
     BEP,
+    totalClientsNumber,
     previousServices,
     newServicesByPrice,
     newServicesByClients,
@@ -49,6 +51,7 @@ const CalculatorResults:React.FC<CalculatorResultsInterface> = ({
                 <ResultsBusinessCost costName="BEP" cost={BEP} />
                 {monthlySalary !== undefined ? <ResultsBusinessCost costName="Mothly salary" cost={monthlySalary} /> : null}
                 {businesCost !== undefined ? <ResultsBusinessCost costName="Annual Revenue" cost={businesCost} /> : null}
+                <ResultsBusinessCost costName="Total clients" cost={totalClientsNumber} />
             </ResultsCategorySubsection>
         </ResultsCategory>
         <ResultsCategory className="block-center">
