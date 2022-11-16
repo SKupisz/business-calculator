@@ -80,10 +80,10 @@ const Calculator: NextPage = () => {
 
     return <>
         <CalculatorHeader className="block-center">
-            {!areResultsAvailable ? `Let's calculate!` : "Your results"}
+            {isError ? "Oops!..." : !areResultsAvailable ? `Let's calculate!` : "Your results"}
         </CalculatorHeader>
         {
-            isError ? <ErrorComponent errorTitle="Oops!..." resetTheCalculator={resetTheCalculator}>
+            isError ? <ErrorComponent errorTitle="Connection error" resetTheCalculator={resetTheCalculator}>
                 Something went wrong. Try to refresh the app or open it later
             </ErrorComponent> : !areResultsAvailable ? <CalculatorComponent 
             phase={phase}
@@ -97,6 +97,7 @@ const Calculator: NextPage = () => {
             services={services}
             addNewService={addNewService}
             updateService={updateService}
+            isLoading={isLoading}
             />: <CalculatorResults 
             goingBackCallback={() => resetTheCalculator()} 
             businesCost={annualCost}

@@ -5,6 +5,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { motion } from "framer-motion";
 import { CalculatorContainer, CalculatorServiceWrapper, CalculatorCardWrapper, CalculatorCardContent, CalculatorCardHeader, CalculatorCardInput,
     CalculatorNextPageIconWrapper } from "styled/calculator";
+import Loader from "./loader";
 
 
 export type serviceType = {
@@ -25,6 +26,7 @@ interface CalculatorComponentInterface {
     services: serviceType[],
     addNewService: () => void,
     updateService: (newState: string, index: number, property: number) => void,
+    isLoading: boolean,
 }
 
 const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
@@ -39,6 +41,7 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
     services,
     addNewService,
     updateService,
+    isLoading
 }:CalculatorComponentInterface) => {
     return <CalculatorContainer className="block-center">
     <motion.div style={{ 
@@ -80,7 +83,7 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
         repeat: 0
     }}>
         <CalculatorCardWrapper>
-            <CalculatorCardContent className="block-center">
+            {isLoading ? <Loader />: <CalculatorCardContent className="block-center">
                 <CalculatorCardHeader className="block-center">
                     Services data
                 </CalculatorCardHeader>
@@ -104,7 +107,7 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
                     </CalculatorNextPageIconWrapper> : null
                 }
 
-            </CalculatorCardContent>
+            </CalculatorCardContent>}
         </CalculatorCardWrapper>
     </motion.div>
     

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const CalculatorHeader = styled.h1`
     width: calc(100% - 20px);
@@ -156,4 +157,31 @@ export const CalculatorNextPageIconWrapper = styled.div`
     &:hover{
         filter: brightness(70%);
     }
+`;
+
+export const LoaderWrapper = styled.section`
+    width: calc(100% - 20px);
+    height: calc(20vh - 20px);
+    min-height: 200px;
+    padding: 10px;
+    position: relative;
+    top: 10vh;
+    overflow: hidden;
+`;
+
+export const LoaderSegmentWrapper = styled.div`
+    width: calc(30% - 20px);
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    text-align: center;
+`;
+
+export const LoaderSegment = styled.div`
+    width: 40px;
+    height: 30px;
+    background: ${(props) => props.theme.color};
+    position: relative;
+    transition: all 0.4s;
 `;
