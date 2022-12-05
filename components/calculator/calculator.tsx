@@ -5,11 +5,12 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { motion } from "framer-motion";
 import { CalculatorContainer, CalculatorServiceWrapper, CalculatorCardWrapper, CalculatorCardContent, CalculatorCardHeader, CalculatorCardInput,
     CalculatorNextPageIconWrapper } from "styled/calculator";
+import Loader from "./loader";
 
 
 export type serviceType = {
-        currentPrice: number|undefined;
-      clientsNumber: number|undefined;
+    currentPrice: number|undefined;
+    clientsNumber: number|undefined;
 };
     
 
@@ -25,6 +26,7 @@ interface CalculatorComponentInterface {
     services: serviceType[],
     addNewService: () => void,
     updateService: (newState: string, index: number, property: number) => void,
+    isLoading: boolean,
 }
 
 const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
@@ -39,6 +41,7 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
     services,
     addNewService,
     updateService,
+    isLoading
 }:CalculatorComponentInterface) => {
     return <CalculatorContainer className="block-center">
     <motion.div style={{ 
@@ -74,13 +77,13 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
         display: "inline-block",
         verticalAlign: "top"
     }} animate={{
-        marginLeft: phase < 1 ? ["100%", "100%"] : phase === 1 ? ["100%", "0%"] : ["0%", "-100%"]
+        marginLeft: phase < 1 ? ["100%", "100%"] : ["100%", "0%"]
     }} transition={{
         duration: 0.4,
         repeat: 0
     }}>
         <CalculatorCardWrapper>
-            <CalculatorCardContent className="block-center">
+            {isLoading ? <Loader />: <CalculatorCardContent className="block-center">
                 <CalculatorCardHeader className="block-center">
                     Services data
                 </CalculatorCardHeader>
@@ -100,11 +103,11 @@ const CalculatorComponent:React.FC<CalculatorComponentInterface> = ({
                 
                 {
                     isNextPhaseAvailable ? <CalculatorNextPageIconWrapper className="block-center">
-                        <NextWeekIcon style={{ color: "inherit", fontSize: "inherit" }} onClick={() => setPhase(1)} />
+                        <NextWeekIcon style={{ color: "inherit", fontSize: "inherit" }} onClick={() => setPhase(phase+1)} />
                     </CalculatorNextPageIconWrapper> : null
                 }
 
-            </CalculatorCardContent>
+            </CalculatorCardContent>}
         </CalculatorCardWrapper>
     </motion.div>
     
