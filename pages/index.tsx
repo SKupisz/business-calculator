@@ -8,6 +8,9 @@ import { motion } from 'framer-motion'
 const Home: NextPage = () => {
   return (
     <>
+      <Head>
+        <meta name="description" content="We, the LTD softway company, hereby give you our business calculator for making your business protifable"/>
+      </Head>
       <motion.div layout animate={{
         x: ["-100%", "0%"]
       }} 

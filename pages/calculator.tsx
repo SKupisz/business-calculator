@@ -8,6 +8,7 @@ import CalculatorResults from "components/calculator/results";
 import ErrorComponent from "components/calculator/error";
 
 import calculateTheResults from "connectionFunctions/calculateTheResults";
+import Head from "next/head";
 
 const Calculator: NextPage = () => {
 
@@ -81,6 +82,9 @@ const Calculator: NextPage = () => {
     }, [phase,isNextPhaseAvailable]);
 
     return <>
+        <Head>
+            <meta name="description" content="The LTD softway business calculator can optimize expenses and incomes of your business to make it work effectively 😉"/>
+        </Head>
         <CalculatorHeader className="block-center">
             {isError ? "Oops!..." : !areResultsAvailable ? `Let's calculate!` : "Your results"}
         </CalculatorHeader>

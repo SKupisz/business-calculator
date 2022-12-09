@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <title>Softway business calculator</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="robots" content="index, follow"/>
+      <meta name="lang" content="en-GB"/>
       <meta name="charset" content="UTF-8"/>
     </Head>
     <ThemeProvider theme={Styles}>
