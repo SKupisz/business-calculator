@@ -64,10 +64,12 @@ const Calculator: NextPage = () => {
     }
 
     useEffect(() => {
-        toggleIsNextPhaseAvailable((phase === 0 && annualCost !== undefined && monthlySalary !== undefined) || (
+        toggleIsNextPhaseAvailable((phase === 0 && annualCost !== undefined && monthlySalary !== undefined && 
+            Number.isFinite(annualCost) && Number.isFinite(monthlySalary) &&
+            annualCost > 0 && monthlySalary > 0) || (
             phase === 1 && services.length > 0 && services.filter((elem: serviceType) => elem.clientsNumber === undefined || 
-            (elem.clientsNumber !== undefined && elem.clientsNumber === 0) || elem.currentPrice === undefined || 
-            (elem.currentPrice !== undefined && elem.currentPrice === 0)).length === 0
+            (elem.clientsNumber !== undefined && (elem.clientsNumber === 0 || !Number.isFinite(elem.clientsNumber))) || elem.currentPrice === undefined || 
+            (elem.currentPrice !== undefined && (elem.currentPrice === 0 || !Number.isFinite(elem.currentPrice)))).length === 0
         ));
     }, [phase, annualCost, monthlySalary, services]);
 

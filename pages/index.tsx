@@ -10,7 +10,11 @@ const Home: NextPage = () => {
     <>
       <motion.div layout animate={{
         x: ["-100%", "0%"]
-      }} transition={{
+      }} 
+      initial={{
+        x: "-100%",
+      }}
+      transition={{
         duration: 0.4,
         delay: 0.1,
         repeat: 0
@@ -20,7 +24,11 @@ const Home: NextPage = () => {
         </LandingPageMainHeader>
       </motion.div>
       
-      <motion.div layout animate={{
+      <motion.div layout 
+      initial={{
+        x: "100%",
+      }}
+      animate={{
         x: ["100%", "0%"]
       }} transition={{
         duration: 0.4,
@@ -31,9 +39,14 @@ const Home: NextPage = () => {
           Our gifts for your business
         </LandingPageSubHeader>
       </motion.div>
-      <motion.div layout animate={{
+      <motion.div layout 
+      initial={{
+        scale: "0",
+      }}
+      animate={{
         scale: ["0", "1"]
-      }} transition={{
+      }} 
+      transition={{
         duration: 0.4,
         delay: 0.2,
         repeat: 0
