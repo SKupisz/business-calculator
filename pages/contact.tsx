@@ -9,13 +9,10 @@ const Contact:React.FC = () => {
         </ContactHeader>
         <ContactContainer className="block-center">
             <ContactWrapper className="block-center">
-                Contact 1 - something@something.com
+                Main contact - {process.env.NEXT_PUBLIC_MAIN_CONTACT}
             </ContactWrapper>
             <ContactWrapper className="block-center">
-                Contact 2 - something@something.com
-            </ContactWrapper>
-            <ContactWrapper className="block-center">
-                Contact 3 - something@something.com
+                Dev contact - {process.env.NEXT_PUBLIC_DEV_CONTACT}
             </ContactWrapper>
         </ContactContainer>
     </>
